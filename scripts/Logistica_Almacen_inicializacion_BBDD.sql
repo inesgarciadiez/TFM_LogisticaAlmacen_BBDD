@@ -20,7 +20,8 @@ USE `Logistica_Almacen` ;
 CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`roles` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rol` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `rol_UNIQUE` (`rol` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -80,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`estados` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `estado` VARCHAR(25) NOT NULL,
   `descripción` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `estado_UNIQUE` (`estado` ASC))
 ENGINE = InnoDB;
 
 
@@ -92,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`pedidos` (
   `fecha_creacion` DATETIME NOT NULL,
   `fecha_salida` DATETIME NULL,
   `matricula` VARCHAR(15) NULL,
-  `operario` INT NOT NULL,
   `detalles` LONGTEXT NULL,
   `comentario_error` LONGTEXT NULL,
   `almacen_origen_id` INT NULL,
@@ -133,6 +134,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+
+
 -- -----------------------------------------------------
 -- INSERTS TABLA ROLES`
 -- -----------------------------------------------------
@@ -157,3 +160,33 @@ INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('CE
 -- INSERTS TABLA USUARIOS`
 -- -----------------------------------------------------
 INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`,`rol_id`) VALUES ('Joaquín', 'Reyes', 'jreyes@gmail.com', '$2a$08$0TBM86/kdWq2MO4kO9Dur.Lhr7bN4dTPJdZ0JDj4BjqfMGJrPgSLm',1);
+INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`,`rol_id`) VALUES ('Susi', 'Caramelo', 'scaramelo@gmail.com', '$2a$08$xvIytcFYT0C7TyzDbY6.AOvsBz/06ZE7fy0GmV1eIM3zwR4FLCgoa',1);
+INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`,`rol_id`) VALUES ('Yolanda', 'Ramos', 'yramos@gmail.com', '$2a$08$Es0uzuXOfJemIUhmkRtdO.K8gNY6O1c.pDkt.aqtH2ayfzxk9MBNy',1);
+INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`, `rol_id`) VALUES ('Berto', 'Romero', 'bromero@gmail.com', '$2a$08$0A9.dHnjwuBqfFdsXZOWDe2XxgFC5iCrJWwFq0UXgSDvpV27vEs9i', 2);
+INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`, `rol_id`) VALUES ('Andreu', 'Buenafuente', 'abuenafuente@gmail.com', '$2a$08$S9yMi8ryc3pQQrpP08h58eBGVbD1OKscSX6bpXgH/x7KHE4YTBr/.', 2);
+INSERT INTO `Logistica_Almacen`.`usuarios` (`nombre`, `apellido`, `email`, `contraseña`, `rol_id`) VALUES ('Silvia', 'Abril', 'sabril@gmail.com', '$2a$08$BbSIL1DGt23duJUUG7byAOAgZxFwNpJRqRxIvidST.8dZvxwsn.9u', 3);
+
+
+-- -----------------------------------------------------
+-- INSERTS TABLA ALMACENES`
+-- -----------------------------------------------------
+INSERT INTO `Logistica_Almacen`.`almacenes` (`nombre`, `responsable_id`, `direccion`, `ciudad`, `codigo_postal`) VALUES ('Fuente del Jarro', '4', 'C/ Jarro 123', 'Benetusser', '46120');
+INSERT INTO `Logistica_Almacen`.`almacenes` (`nombre`, `responsable_id`, `direccion`, `ciudad`, `codigo_postal`) VALUES ('Las Rosas', '5', 'C/ Rosas 123', 'Alcossebre', '46840');
+INSERT INTO `Logistica_Almacen`.`almacenes` (`nombre`, `responsable_id`, `direccion`, `ciudad`, `codigo_postal`) VALUES ('Camino del Real', '4', 'C/ Real 123', 'Catadau', '46240');
+INSERT INTO `Logistica_Almacen`.`almacenes` (`nombre`, `responsable_id`, `direccion`, `ciudad`, `codigo_postal`) VALUES ('ColeVega', '5', 'C/ Vega 123', 'Aldaia', '46730');
+
+-- -----------------------------------------------------
+-- INSERTS TABLA PEDIDOS`
+-- -----------------------------------------------------
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '1234-ABC', 'Impresora Canon\nPaquete papel A4 500uds.', '1', '2', '1', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '5678-DEF', 'Impresora Canon\nPaquete papel A4 500uds.\nTinta negro\nTinta color', '1', '3', '2', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '9012-UVW', 'Paquete papel A4 500uds.\nTinta negro\nTinta color', '2', '3', '3', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '1234-ABC', 'Impresora Canon\nPaquete papel A4 500uds.\nTinta negro\nTinta color', '3', '4', '1', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '5678-DEF', 'Impresora Canon\nPaquete papel A4 500uds.\nTinta negro\nTinta color', '4', '1', '2', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '9012-UVW', 'Paquete papel A4 500uds.\nTinta negro\nTinta color', '2', '3', '3', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '1234-ABC', 'Impresora Canon\nPaquete papel A4 500uds.', '1', '2', '1', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '5678-DEF', 'Paquete papel A4 500uds.\nTinta negro\nTinta color', '1', '3', '2', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '9012-UVW', 'Paquete papel A4 500uds.\nTinta negro\nTinta color', '2', '3', '3', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '1234-ABC', 'Impresora Canon\nPaquete papel A4 500uds.\nTinta negro\nTinta color', '3', '4', '1', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '5678-DEF', 'Impresora Canon\nTinta negro\nTinta color', '4', '1', '2', '1');
+INSERT INTO `Logistica_Almacen`.`pedidos` (`fecha_creacion`, `fecha_salida`, `matricula`, `detalles`, `almacen_origen_id`, `almacen_destino_id`, `responsable_id`, `estado_id`) VALUES (NOW(), NOW(), '9012-UVW', 'Tinta negro\nTinta color', '2', '3', '3', '1');
