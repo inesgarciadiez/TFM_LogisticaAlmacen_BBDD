@@ -37,15 +37,14 @@ CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`usuarios` (
   `email` VARCHAR(50) NOT NULL,
   `contraseña` VARCHAR(250) NOT NULL,
   `rol_id` INT NULL,
-  `token` VARCHAR(250) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   INDEX `fk_usuarios_roles1_idx` (`rol_id` ASC),
   CONSTRAINT `fk_usuarios_roles1`
     FOREIGN KEY (`rol_id`)
     REFERENCES `Logistica_Almacen`.`roles` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -67,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`almacenes` (
   CONSTRAINT `fk_almacenes_usuarios1`
     FOREIGN KEY (`responsable_id`)
     REFERENCES `Logistica_Almacen`.`usuarios` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -108,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`pedidos` (
   CONSTRAINT `fk_pedidos_almacenes1`
     FOREIGN KEY (`almacen_origen_id`)
     REFERENCES `Logistica_Almacen`.`almacenes` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_pedidos_almacenes2`
     FOREIGN KEY (`almacen_destino_id`)
     REFERENCES `Logistica_Almacen`.`almacenes` (`id`)
@@ -133,6 +132,7 @@ COLLATE = utf8mb4_unicode_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 
