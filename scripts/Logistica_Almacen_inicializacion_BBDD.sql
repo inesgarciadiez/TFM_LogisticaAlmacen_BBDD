@@ -79,7 +79,7 @@ COLLATE = utf8mb4_unicode_ci;
 CREATE TABLE IF NOT EXISTS `Logistica_Almacen`.`estados` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `estado` VARCHAR(25) NOT NULL,
-  `descripción` VARCHAR(100) NULL,
+  `descripcion` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `estado_UNIQUE` (`estado` ASC))
 ENGINE = InnoDB;
@@ -148,13 +148,13 @@ INSERT INTO `Logistica_Almacen`.`roles` (`rol`) VALUES ('jefe de equipo');
 -- INSERTS TABLA ESTADOS`
 -- -----------------------------------------------------
 
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('NUEVO', 'El pedido ha sido creado');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('PTE_SALIDA', 'El pedido ha quedado pendiente de revisión para su salida por el encargado del almacén de salida');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('ERROR', 'El pedido ha sido como marcado como erróneo por el encargado del almacén');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('LISTO_SALIDA', 'El pedido ha sido marcado como correcto por el encargado del almacén de salida');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('PTE_ENTRADA', 'El pedido ha quedado pendiente de revisión para su entrada por el encargado del almacén de entrada');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('LISTO_ENTRADA', 'El pedido ha sido marcado como correcto por el encargado del almacén de entrada');
-INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripción`) VALUES ('CERRADO', 'El pedido ha sido cerrado');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('NUEVO', 'El pedido ha sido creado');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('PTE_SALIDA', 'El pedido ha quedado pendiente de revisión para su salida por el encargado del almacén de salida');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('ERROR', 'El pedido ha sido como marcado como erróneo por el encargado del almacén');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('LISTO_SALIDA', 'El pedido ha sido marcado como correcto por el encargado del almacén de salida');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('PTE_ENTRADA', 'El pedido ha quedado pendiente de revisión para su entrada por el encargado del almacén de entrada');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('LISTO_ENTRADA', 'El pedido ha sido marcado como correcto por el encargado del almacén de entrada');
+INSERT INTO `Logistica_Almacen`.`estados` (`estado`, `descripcion`) VALUES ('CERRADO', 'El pedido ha sido cerrado');
 
 -- -----------------------------------------------------
 -- INSERTS TABLA USUARIOS`
